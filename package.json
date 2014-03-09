@@ -1,0 +1,30 @@
+{
+  "name": "vercmp",
+  "version": "0.0.1",
+  "description": "Debian version comparison stolen from dpkg --compare-version",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/tap ./test.js",
+    "install": "node-gyp rebuild"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/diorahman/vercmp.git"
+  },
+  "keywords": [
+    "version",
+    "comparison",
+    "dpkg",
+    "debian"
+  ],
+  "author": "Dhi Aurrahman <diorahman@rockybars.com>",
+  "license": "MIT",
+  "gypfile": true,
+  "bugs": {
+    "url": "https://github.com/diorahman/vercmp/issues"
+  },
+  "homepage": "https://github.com/diorahman/vercmp",
+  "devDependencies": {
+    "tap": "^0.4.8"
+  }
+}
