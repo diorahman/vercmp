@@ -1,6 +1,6 @@
 {
   "name": "vercmp",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Debian version comparison stolen from dpkg --compare-version",
   "main": "index.js",
   "scripts": {
