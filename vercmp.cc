@@ -1,5 +1,7 @@
-#include <ctype.h>
 #include <node.h>
+#include <nan.h>
+
+#include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -7,7 +9,7 @@
 
 using namespace v8;
 
-/* the following is stolen from dpkg */
+/* the following lines are stolen from dpkg */
 /* assume ascii; warning: evaluates x multiple times! */
 #define order(x) ((x) == '~' ? -1 \
     : isdigit((x)) ? 0 \
@@ -93,7 +95,7 @@ int vercmp(const string &a, const string &b) {
 
 char *get(v8::Local<v8::Value> value, const char *fallback = "") {
     if (value->IsString()) {
-        v8::String::AsciiValue string(value);
+        v8::String::Utf8Value string(value);
         char *str = (char *) malloc(string.length() + 1);
         strcpy(str, *string);
         return str;
@@ -103,20 +105,14 @@ char *get(v8::Local<v8::Value> value, const char *fallback = "") {
     return str;
 }
 
-// Simple synchronous access to the `Estimate()` function
-Handle<Value> Compare(const Arguments& args) {
-  HandleScope scope;
-
-  // expect a number as the first argument
-  // int points = args[0]->Uint32Value();
-  int est = vercmp(get(args[0], "0.0.0"), get(args[1], "0.0.0"));
-
-  return scope.Close(Number::New(est));
+NAN_METHOD(Compare) {
+  NanScope();
+  int result = vercmp(get(args[0], "0.0.0"), get(args[1], "0.0.0"));
+  NanReturnValue(NanNew<Number>(result));
 }
 
 void Init(Handle<Object> exports) {
-  exports->Set(String::NewSymbol("vercmp"),
-      FunctionTemplate::New(Compare)->GetFunction());
+  exports->Set(NanNew<String>("vercmp"), NanNew<FunctionTemplate>(Compare)->GetFunction());
 }
 
 NODE_MODULE(vercmp, Init)
