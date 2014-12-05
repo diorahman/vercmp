@@ -1,7 +1,7 @@
 {
   "name": "vercmp",
-  "version": "0.0.2",
-  "description": "Debian version comparison stolen from dpkg --compare-version",
+  "version": "1.0.0",
+  "description": "Compare two debian package versions",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/tap ./test.js",
