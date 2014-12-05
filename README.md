@@ -1,6 +1,6 @@
 # vercmp
 
-In short, it answers this: http://stackoverflow.com/questions/4957514/how-to-compare-debian-package-versions but in node.
+In short, it is one of tools to answer this question: http://stackoverflow.com/questions/4957514/how-to-compare-debian-package-versions but in node.
 
 ## install
 
